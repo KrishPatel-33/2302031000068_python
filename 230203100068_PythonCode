@@ -1,0 +1,36 @@
+# Importing the pandas library
+import pandas as pd
+
+# Step 1: Create a simple DataFrame
+data = {
+    'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eva'],
+    'Math': [85, 78, 92, 88, 76],
+    'Science': [91, 82, 89, 94, 72],
+    'English': [79, 85, 87, 90, 83]
+}
+
+df = pd.DataFrame(data)
+
+# Step 2: Display the DataFrame
+print("Original Data:")
+print(df)
+
+# Step 3: Calculate total and average marks
+df['Total'] = df[['Math', 'Science', 'English']].sum(axis=1)
+df['Average'] = df['Total'] / 3
+
+# Step 4: Filter students with average > 85
+top_students = df[df['Average'] > 85]
+
+# Step 5: Sort by total marks (descending)
+df_sorted = df.sort_values(by='Total', ascending=False)
+
+# Step 6: Save to CSV
+df_sorted.to_csv('student_marks_report.csv', index=False)
+
+# Step 7: Display results
+print("\nStudents with Average > 85:")
+print(top_students)
+
+print("\nSorted by Total Marks:")
+print(df_sorted)
